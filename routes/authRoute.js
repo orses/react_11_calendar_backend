@@ -4,7 +4,9 @@
 */
 const { Router } = require('express');
 const { check } = require('express-validator');
+const helmet = require('helmet');
 const router = Router();
+router.use(helmet());
 const {
   createUser,
   loginUser,
