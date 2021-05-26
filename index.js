@@ -1,9 +1,10 @@
 const express = require('express');
+const helmet = require('helmet');
 require('dotenv').config();
 
 // Mounting the server
 const app = express();
-app.disable('x-powered-by'); // don't disclose technologies used
+app.use(helmet()); // don't disclose technologies used
 const PORT = process.env.SERVER_PORT || 8080;
 app.use(express.static('public'));
 
