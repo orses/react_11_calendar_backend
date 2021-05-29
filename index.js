@@ -14,7 +14,10 @@ const PORT = process.env.SERVER_PORT || 8080;
 dbConnection();
 
 // CORS
-app.use(cors());
+const corsOptions = {
+  origin: process.env.TRUSTED_WEBSITE,
+};
+app.use(cors(corsOptions));
 
 // Sending data
 app.use(express.static('public'));

@@ -6,7 +6,8 @@ const generateJWT = require('../helpers/generateJWT');
 const createUser = async (req, res = express.response) => {
   const { name, email, password } = req.body;
   try {
-    let user = await UserModel.findOne({ email });
+    // toString() is for validate input data
+    let user = await UserModel.findOne({ email: email.toString() });
 
     if (user) {
       return res.status(400).json({
@@ -41,7 +42,7 @@ const createUser = async (req, res = express.response) => {
 const loginUser = async (req, res = express.response) => {
   const { email, password } = req.body;
   try {
-    const user = await UserModel.findOne({ email });
+    const user = await UserModel.findOne({ email: email.toString() });
 
     if (!user) {
       return res.status(400).json({
