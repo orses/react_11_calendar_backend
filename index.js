@@ -8,7 +8,6 @@ const { dbConnection } = require('./database/config');
 // Mounting the server
 const app = express();
 app.use(helmet()); // don't disclose technologies used
-const PORT = process.env.SERVER_PORT || 8080;
 
 // Database
 dbConnection();
@@ -30,6 +29,8 @@ app.use('/api/auth', require('./routes/authRoute'));
 app.use('/api/events', require('./routes/eventsRoute'));
 
 // The server is now working, so listening requests
-app.listen(PORT, () => {
-  console.log(`🚀 Server listening at http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(
+    `🚀 Server listening at http://${process.env.TRUSTED_WEBSITE}:${process.env.PORT}`
+  );
 });
