@@ -10,7 +10,11 @@ const app = express();
 app.use(helmet()); // don't disclose technologies used
 
 // Database
-dbConnection();
+try {
+  dbConnection();
+} catch (error) {
+  console.log('No hay acceso a los eventos');
+}
 
 // CORS
 const corsOptions = {
@@ -29,8 +33,9 @@ app.use('/api/auth', require('./routes/authRoute'));
 app.use('/api/events', require('./routes/eventsRoute'));
 
 // The server is now working, so listening requests
-app.listen(process.env.PORT, () => {
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
   console.log(
-    `🚀 Server listening at http://${process.env.TRUSTED_WEBSITE}:${process.env.PORT}`
+    `🚀 Server listening at http://${process.env.TRUSTED_WEBSITE}:${PORT}`
   );
 });
