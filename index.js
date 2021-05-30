@@ -27,6 +27,7 @@ app.use(express.json());
 
 // Routing
 app.use('/api/auth', require('./routes/authRoute'));
+app.use('/api/events', require('./routes/eventsRoute'));
 
 // The server is now working, so listening requests
 app.listen(PORT, () => {

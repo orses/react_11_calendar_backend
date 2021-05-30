@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const UserModel = require('../models/UserModel');
 const generateJWT = require('../helpers/generateJWT');
 
-const createUser = async (req, res = express.response) => {
+const createUser = async (req, res = response) => {
   const { name, email, password } = req.body;
   try {
     // toString() is for validate input data
@@ -39,7 +39,7 @@ const createUser = async (req, res = express.response) => {
   }
 };
 
-const loginUser = async (req, res = express.response) => {
+const loginUser = async (req, res = response) => {
   const { email, password } = req.body;
   try {
     const user = await UserModel.findOne({ email: email.toString() });
