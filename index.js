@@ -15,7 +15,7 @@ dbConnection();
 
 // CORS
 const corsOptions = {
-  origin: process.env.TRUSTED_WEBSITE,
+  origin: process.env.TRUSTED_WEBSITE || process.env.TRUSTED_DEV_WEBSITE,
 };
 app.use(cors(corsOptions));
 
